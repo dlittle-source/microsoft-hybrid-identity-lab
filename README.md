@@ -53,3 +53,45 @@ The hybrid identity environment was deployed using Oracle VirtualBox and Windows
 - **Scoped synchronization:** Limits synchronized identities to the intended organizational unit.
 - **Password Hash Synchronization:** Enables Microsoft Entra ID to authenticate users without contacting an on-premises domain controller for each cloud sign-in.
 - **Cloud-managed security groups:** Demonstrates cloud identity membership administration while retaining Active Directory as the source for the synchronized user identity.
+
+## Implementation and Configuration
+
+### 1. Prepare the On-Premises Active Directory Environment
+
+- Used the existing `dsolutions.local` Active Directory domain running on Windows Server 2025.
+- Verified domain controller and DNS functionality.
+- Created and organized test identities within the Finance organizational unit.
+- Configured the alternative UPN suffix `dmrklittleyahoo.onmicrosoft.com` in Active Directory Domains and Trusts.
+- Updated John Doe's UPN to `jdoe@dmrklittleyahoo.onmicrosoft.com`.
+
+### 2. Prepare the Synchronization Server
+
+- Deployed `WIN-SYNC01` using Windows Server 2025.
+- Joined the server to the `dsolutions.local` domain.
+- Configured DNS resolution using the on-premises Active Directory DNS servers.
+- Installed Microsoft Entra Connect Sync on the dedicated member server.
+
+### 3. Configure Microsoft Entra Connect Sync
+
+- Selected the custom installation and configuration process.
+- Connected Microsoft Entra Connect Sync to the on-premises Active Directory forest.
+- Connected the synchronization service to the Microsoft Entra ID tenant.
+- Configured OU filtering to include the Finance OU.
+- Selected Password Hash Synchronization as the cloud sign-in method.
+- Completed the synchronization configuration.
+
+### 4. Validate Identity Synchronization and Authentication
+
+- Verified that John Doe appeared in Microsoft Entra ID.
+- Confirmed that his account displayed **On-premises sync: Yes**.
+- Validated his cloud UPN.
+- Successfully authenticated to the Microsoft My Account portal using his synchronized identity and on-premises Active Directory password.
+
+### 5. Configure Cloud Security Group Membership
+
+- Created the Microsoft Entra ID security group `SG-Cloud-Finance-Users`.
+- Configured assigned group membership.
+- Added the synchronized John Doe identity as a direct member.
+- Verified membership in the Microsoft Entra admin center.
+
+**Result:** Successfully implemented and validated an on-premises-to-cloud identity synchronization workflow using Microsoft Entra Connect Sync, Password Hash Synchronization, and cloud-managed security group membership.
