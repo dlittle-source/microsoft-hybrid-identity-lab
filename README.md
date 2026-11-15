@@ -95,3 +95,37 @@ The hybrid identity environment was deployed using Oracle VirtualBox and Windows
 - Verified membership in the Microsoft Entra admin center.
 
 **Result:** Successfully implemented and validated an on-premises-to-cloud identity synchronization workflow using Microsoft Entra Connect Sync, Password Hash Synchronization, and cloud-managed security group membership.
+
+## Architecture Diagram
+
+The following diagram illustrates the integration between on-premises Active Directory Domain Services, Microsoft Entra Connect Sync, and Microsoft Entra ID.
+
+![Microsoft Hybrid Identity Architecture](screenshots/hybrid-identity-architecture.png)
+
+## Implementation Screenshots
+
+### 1. On-Premises Active Directory — Finance OU
+
+John Doe's account is located in the Finance OU within the `dsolutions.local` Active Directory domain.
+
+![Active Directory Finance OU](screenshots/ad-finance-ou.png)
+
+### 2. Microsoft Entra ID — Synchronized User
+
+John Doe's account was synchronized from on-premises Active Directory to Microsoft Entra ID using Microsoft Entra Connect Sync.
+
+![Microsoft Entra ID User](screenshots/entra-synced-user.png)
+
+### 3. Microsoft Entra ID — Cloud Security Group
+
+The synchronized John Doe account was added to the cloud-managed security group `SG-Cloud-Finance-Users`.
+
+![Microsoft Entra ID Security Group](screenshots/entra-security-group.png)
+
+## Project Outcome
+
+Successfully implemented a Microsoft Hybrid Identity environment using Windows Server 2025, Active Directory Domain Services, and Microsoft Entra Connect Sync.
+
+Validated identity synchronization, Password Hash Synchronization-based cloud authentication, and cloud-managed security group membership.
+
+This project demonstrates hands-on experience with Microsoft identity infrastructure, hybrid directory integration, and foundational Identity and Access Management (IAM) administration.
